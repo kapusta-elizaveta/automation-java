@@ -1,21 +1,25 @@
 package test;
 
-import org.junit.Assert;
+import org.json.simple.parser.ParseException;
 import org.junit.Test;
 import pages.LoginPage;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import static org.junit.Assert.assertEquals;
 
 public class LoginPageTest extends BasePage {
 
     private final String LOG_OUT = "Logout";
-    private final String LOGIN = "DDD";
-    private final String PASSWORD = "VVVV";
+    private final String LOGIN = "integriuser2@mailinator.com";
+    private final String PASSWORD = "integripassword";
 
     @Test
-    public void LogInTest()
-    {
+    public void logInTest() throws IOException, ParseException {
         LoginPage login = new LoginPage(_driver.get_driver());
-        login.LogIn(LOGIN, PASSWORD);
-        Assert.assertEquals(LOG_OUT, login.logOutIcon.getText(), "User didn't log in");
+        login.logIn();
+        assertEquals(LOG_OUT, login.logOutIcon.getText());
     }
 
 }
