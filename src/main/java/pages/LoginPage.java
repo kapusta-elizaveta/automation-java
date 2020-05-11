@@ -2,10 +2,7 @@ package pages;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import com.google.gson.stream.JsonReader;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,18 +40,17 @@ public class LoginPage extends AbstractPage{
         super(driver);
     }
 
-    public ProjectsPage logIn() throws IOException, ParseException {
-//        Gson gson = new Gson();
-//        JsonReader reader = new JsonReader(new FileReader("../resources/testdata/user.json"));
-//        JSONObject jsonObject = gson.fromJson(reader, JSONObject.class);
-//        String login = jsonObject.get("email").toString();
-//        String password = jsonObject.get("password").toString();
-          JSONParser parser = new JSONParser();
-          Object obj = parser.parse(new FileReader("../resources/testdata/user.json"));
-          JSONObject jsonObject =  (JSONObject) obj;
-
-        String login = (String) jsonObject.get("email");
-        String password = (String) jsonObject.get("password");
+    public ProjectsPage logIn()  {
+        Gson gson = new Gson();
+        JsonReader reader = null;
+        try {
+            reader = new JsonReader(new FileReader("testdata/user.json"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+        String login = jsonObject.get("email").getAsString();
+        String password = jsonObject.get("password").getAsString();
         driver.get("https://www.integrivideo.com/app/projects");
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOf(inputEmail));
