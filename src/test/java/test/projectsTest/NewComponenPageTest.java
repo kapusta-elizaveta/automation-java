@@ -13,14 +13,14 @@ public class NewComponenPageTest extends BasePage {
     private final String BUTTON_UPDATE = "Update";
 
     @Test
-    public void CreateComponentTest()
+    public void createComponentTest()
     {
         LoginPage loginPage = new LoginPage(_driver.get_driver());
         loginPage.logIn();
         NewComponentPage newComponentPage = new NewComponentPage(_driver.get_driver());
-        newComponentPage.CreateComponent(COMPONENT_NAME);
+        newComponentPage.createComponent(COMPONENT_NAME);
         _driver.get_driver().navigate().refresh();
-        assertEquals(BUTTON_UPDATE, newComponentPage.ComponentCode.getText());
+        assertEquals(BUTTON_UPDATE, newComponentPage.componentCode.getText());
     }
 
 }

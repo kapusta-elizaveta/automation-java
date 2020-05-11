@@ -8,30 +8,30 @@ import pages.AbstractPage;
 public class ProjectPage extends AbstractPage {
 
     @FindBy(xpath = "//span[@class='iv-icon iv-icon-file-add']")
-    public WebElement IconComponentAdd;
+    public WebElement iconComponentAdd;
 
     @FindBy(xpath = "//a[contains(text(),'Edit')]")
-    public WebElement EditComponentLink;
+    public WebElement editComponentLink;
 
     @FindBy(xpath = "//div[@class='col-12 description']")
-    public WebElement ProjectDescription;
+    public WebElement projectDescription;
 
     protected ProjectPage(WebDriver driver) {
         super(driver);
     }
 
-    public void AddComponent()
+    public void addComponent()
     {
         ProjectsPage projects = new ProjectsPage(driver);
-        projects.OpenProject();
-        IconComponentAdd.click();
+        projects.openProject();
+        iconComponentAdd.click();
     }
 
-    public EditProjectPage OpenEditProject()
+    public EditProjectPage openEditProject()
     {
         ProjectsPage projects = new ProjectsPage(driver);
-        projects.OpenProject();
-        EditComponentLink.click();
+        projects.openProject();
+        editComponentLink.click();
         return new EditProjectPage(driver);
     }
 

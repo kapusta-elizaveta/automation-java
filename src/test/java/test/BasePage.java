@@ -10,13 +10,13 @@ public class BasePage {
     protected DriverInstance _driver;
 
     @Before()
-    public void SetUp() {
+    public void setUp() {
         _driver = new DriverInstance(DriverType.CHROME);
         _driver.get_driver().manage().window().maximize();
     }
 
     @After
-    public void TearDown() {
+    public void tearDown() {
         _driver.get_driver().quit();
     }
 

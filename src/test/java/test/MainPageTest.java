@@ -1,6 +1,7 @@
 package test;
 
 import org.junit.Test;
+import pages.LoginPage;
 import pages.MainPage;
 import pages.projects.ProjectsPage;
 
@@ -11,10 +12,11 @@ public class MainPageTest extends BasePage {
     private final String TEXT_LOG_IN_BUTTON = "Log in";
 
      @Test
-    public void LogOutTest()
+    public void logOutTest()
     {
-        ProjectsPage projects = new ProjectsPage(_driver.get_driver());
-        MainPage mainPage = projects.LogOut();
-        assertEquals(TEXT_LOG_IN_BUTTON, mainPage.LogInButton.getText());
+        LoginPage loginPage = new LoginPage(_driver.get_driver());
+        ProjectsPage projects = loginPage.logIn();
+        MainPage mainPage = projects.logOut();
+        assertEquals(TEXT_LOG_IN_BUTTON, mainPage.logInButton.getText());
     }
 }

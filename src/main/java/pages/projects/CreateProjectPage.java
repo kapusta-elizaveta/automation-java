@@ -7,47 +7,49 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.AbstractPage;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 public class CreateProjectPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@placeholder='New project']")
-    public WebElement InputProjectName;
+    public WebElement inputProjectName;
 
     @FindBy(xpath = "//textarea[@placeholder='Type here...']")
-    public WebElement InputProjectDiscription;
+    public WebElement inputProjectDiscription;
 
     @FindBy(xpath = "//input[@placeholder='example.com']")
-    public WebElement InputDomain;
+    public WebElement inputDomain;
 
     @FindBy(xpath = "//button[@class='btn']")
-    public WebElement CreateButton;
+    public WebElement createButton;
 
     @FindBy(xpath = "//a[@class='nav-link'][contains(text(),'Projects')]")
-    public WebElement ProjectsLink;
+    public WebElement projectsLink;
 
     @FindBy(xpath = "//a[@class='nav-link'][contains(text(),'Projects')]")
-    public WebElement LibraryLink;
+    public WebElement libraryLink;
 
 
     public CreateProjectPage(WebDriver driver) {
         super(driver);
     }
 
-    public void AddProject(String projectName, String projectDiscription, String domain)
+    public void addProject(String projectName, String projectDiscription, String domain)
     {
         ProjectsPage projects = new ProjectsPage(driver);
-        projects.OpenAddProject();
-        InputProjectName.sendKeys(projectName);
-        InputProjectDiscription.sendKeys(projectDiscription);
-        InputDomain.sendKeys(domain);
-        CreateButton.click();
+        projects.openAddProject();
+        inputProjectName.sendKeys(projectName);
+        inputProjectDiscription.sendKeys(projectDiscription);
+        inputDomain.sendKeys(domain);
+        createButton.click();
     }
 
-    public int OpenProjectsPage(String xpathCountProject, String pageTitle)
+    public int openProjectsPage(String xpathCountProject, String pageTitle)
     {
         ((JavascriptExecutor)driver).executeScript("window.open()");
-        switchWindows(pageTitle);
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
         driver.get("https://www.integrivideo.com/app/projects");;
         return driver.findElements(By.xpath(xpathCountProject)).size();
     }

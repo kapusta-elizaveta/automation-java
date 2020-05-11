@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 public class MainPage extends AbstractPage {
 
     @FindBy(xpath = "//a[@class='btn']")
-    public WebElement LogInButton;
+    public WebElement logInButton;
 
 
     public MainPage(WebDriver driver) {

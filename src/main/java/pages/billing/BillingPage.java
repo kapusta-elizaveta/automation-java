@@ -9,17 +9,17 @@ import pages.projects.ProjectsPage;
 public class BillingPage extends AbstractPage {
 
     @FindBy(xpath = "//a[contains(text(),'Add new')]")
-    public WebElement AddNewCardButton;
+    public WebElement addNewCardButton;
 
     public BillingPage(WebDriver driver) {
         super(driver);
     }
 
-    public NewCardPage OpenCardPage()
+    public NewCardPage openCardPage()
     {
         ProjectsPage projects = new ProjectsPage(driver);
-        projects.OpenBilling();
-        AddNewCardButton.click();
+        projects.openBilling();
+        addNewCardButton.click();
         return new NewCardPage(driver);
     }
 

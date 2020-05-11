@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
@@ -35,7 +34,7 @@ public class NewCardPage extends AbstractPage {
     public void AddWrongCard(String numberCard, String month, String year , String cardholderName)
     {
         BillingPage billingPage = new BillingPage(driver);
-        billingPage.OpenCardPage();
+        billingPage.openCardPage();
         InputNumberCard.sendKeys(numberCard);
         InputMonth.sendKeys(month);
         InputYear.sendKeys(year);

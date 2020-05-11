@@ -35,20 +35,20 @@ public class ProjectsPage extends AbstractPage {
         super(driver);
     }
 
-    public MainPage LogOut()
+    public MainPage logOut()
     {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.logOutIcon.click();
         return new MainPage(driver);
     }
 
-    public CreateProjectPage OpenAddProject()
+    public CreateProjectPage openAddProject()
     {
         addProjectButton.click();
         return new CreateProjectPage(driver);
     }
 
-    public ProjectPage OpenProject()
+    public ProjectPage openProject()
     {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath(XPATH_PROJECT_LINK)));
@@ -56,7 +56,7 @@ public class ProjectsPage extends AbstractPage {
         return new ProjectPage(driver);
     }
 
-    public BillingPage OpenBilling()
+    public BillingPage openBilling()
     {
         linkBilling.click();
         return new BillingPage(driver);

@@ -15,7 +15,7 @@ public class NewCardPageTest extends BasePage {
     private final String NAME = "integri";
 
     @Test
-    public void AddWrongCardTest()
+    public void addWrongCardTest()
     {
         LoginPage loginPage = new LoginPage(_driver.get_driver());
         loginPage.logIn();

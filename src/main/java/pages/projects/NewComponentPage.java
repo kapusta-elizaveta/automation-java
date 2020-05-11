@@ -8,24 +8,24 @@ import pages.AbstractPage;
 public class NewComponentPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@placeholder='New component']")
-    public WebElement InputComponentName;
+    public WebElement inputComponentName;
 
     @FindBy(xpath = "//button[@class='btn']")
-    public WebElement CreateButton;
+    public WebElement createButton;
 
     @FindBy(xpath = "//button[@class='btn']")
-    public WebElement ComponentCode ;
+    public WebElement componentCode;
 
     public NewComponentPage(WebDriver driver) {
         super(driver);
     }
 
-    public void CreateComponent(String componentName)
+    public void createComponent(String componentName)
     {
         ProjectPage project = new ProjectPage(driver);
-        project.AddComponent();
-        InputComponentName.sendKeys(componentName);
-        CreateButton.click();
+        project.addComponent();
+        inputComponentName.sendKeys(componentName);
+        createButton.click();
     }
 
 }
