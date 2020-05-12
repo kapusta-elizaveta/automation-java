@@ -1,5 +1,6 @@
 package pages.billing;
 
+import model.Card;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,14 +32,14 @@ public class NewCardPage extends AbstractPage {
         super(driver);
     }
 
-    public void AddWrongCard(String numberCard, String month, String year , String cardholderName)
+    public void AddWrongCard(Card card)
     {
         BillingPage billingPage = new BillingPage(driver);
         billingPage.openCardPage();
-        InputNumberCard.sendKeys(numberCard);
-        InputMonth.sendKeys(month);
-        InputYear.sendKeys(year);
-        InputCardholderName.sendKeys(cardholderName);
+        InputNumberCard.sendKeys(card.getNumberCard());
+        InputMonth.sendKeys(card.getMonth());
+        InputYear.sendKeys(card.getYear());
+        InputCardholderName.sendKeys(card.getName());
         new WebDriverWait(driver, 30).until(ExpectedConditions
                 .elementToBeClickable(AddButton));
         AddButton.click();

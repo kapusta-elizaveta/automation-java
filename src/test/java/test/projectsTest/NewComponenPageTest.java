@@ -1,8 +1,10 @@
 package test.projectsTest;
 
+import model.User;
 import org.junit.Test;
 import pages.LoginPage;
 import pages.projects.NewComponentPage;
+import service.UserCreator;
 import test.BasePage;
 
 import static org.junit.Assert.assertEquals;
@@ -15,8 +17,9 @@ public class NewComponenPageTest extends BasePage {
     @Test
     public void createComponentTest()
     {
-        LoginPage loginPage = new LoginPage(_driver.get_driver());
-        loginPage.logIn();
+        User testUser = UserCreator.withCredentialsFromProperty();
+        LoginPage login = new LoginPage(_driver.get_driver());
+        login.logIn(testUser);
         NewComponentPage newComponentPage = new NewComponentPage(_driver.get_driver());
         newComponentPage.createComponent(COMPONENT_NAME);
         _driver.get_driver().navigate().refresh();

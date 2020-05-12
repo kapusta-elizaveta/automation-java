@@ -1,9 +1,11 @@
 package test.projectsTest;
 
+import model.User;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import pages.LoginPage;
 import pages.projects.CreateProjectPage;
+import service.UserCreator;
 import test.BasePage;
 
 import static org.junit.Assert.assertEquals;
@@ -19,8 +21,9 @@ public class CreateProjectPageTest extends BasePage {
     @Test
     public void createProjectTest()
     {
-        LoginPage loginPage = new LoginPage(_driver.get_driver());
-        loginPage.logIn();
+        User testUser = UserCreator.withCredentialsFromProperty();
+        LoginPage login = new LoginPage(_driver.get_driver());
+        login.logIn(testUser);
         int oldCountProject = _driver.get_driver().findElements(By.xpath(XPATH_COUNT_PROJECTS)).size();
         CreateProjectPage createProject = new CreateProjectPage(_driver.get_driver());
         createProject.addProject(PROJECT_NAME, PROJECT_DISCRIPTION, DOMAIN);

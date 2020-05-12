@@ -1,9 +1,11 @@
 package test;
 
+import model.User;
 import org.junit.Test;
 import pages.LoginPage;
 import pages.MainPage;
 import pages.projects.ProjectsPage;
+import service.UserCreator;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,8 +16,9 @@ public class MainPageTest extends BasePage {
      @Test
     public void logOutTest()
     {
-        LoginPage loginPage = new LoginPage(_driver.get_driver());
-        ProjectsPage projects = loginPage.logIn();
+        User testUser = UserCreator.withCredentialsFromProperty();
+        LoginPage login = new LoginPage(_driver.get_driver());
+        ProjectsPage projects = login.logIn(testUser);
         MainPage mainPage = projects.logOut();
         assertEquals(TEXT_LOG_IN_BUTTON, mainPage.logInButton.getText());
     }

@@ -3,6 +3,7 @@ package pages;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.stream.JsonReader;
+import model.User;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,22 +41,12 @@ public class LoginPage extends AbstractPage{
         super(driver);
     }
 
-    public ProjectsPage logIn()  {
-        Gson gson = new Gson();
-        JsonReader reader = null;
-        try {
-            reader = new JsonReader(new FileReader("testdata/user.json"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-        String login = jsonObject.get("email").getAsString();
-        String password = jsonObject.get("password").getAsString();
+    public ProjectsPage logIn(User user)  {
         driver.get("https://www.integrivideo.com/app/projects");
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.visibilityOf(inputEmail));
-        inputEmail.sendKeys(login);
-        inputPassword.sendKeys(password);
+        inputEmail.sendKeys(user.getEmail());
+        inputPassword.sendKeys(user.getPassword());
         logInButton.click();
         return new ProjectsPage(driver);
     }
